@@ -46,6 +46,69 @@ const ChatList = () => {
           <p>This is a new messages.</p>
         </div>
       </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Dirga Putra Dachi</span>
+          <p>This is a new messages.</p>
+        </div>
+      </div>
     </div>
   );
 };
