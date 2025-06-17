@@ -19,7 +19,7 @@ const ChatList = () => {
         />
       </div>
       <div className="item">
-        <img src="./avatar.png" alt="" />
+        <img src="./carollous.jpg" alt="" />
         <div className="texts">
           <span>Carollous Dachi</span>
           <p>This is a new messages.</p>
@@ -28,21 +28,21 @@ const ChatList = () => {
       <div className="item">
         <img src="./avatar.png" alt="" />
         <div className="texts">
-          <span>Carollous Dachi</span>
+          <span>Paulus Dachi</span>
+          <p>How are you today ?</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Josua Christian Dachi</span>
           <p>This is a new messages.</p>
         </div>
       </div>
       <div className="item">
         <img src="./avatar.png" alt="" />
         <div className="texts">
-          <span>Carollous Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Carollous Dachi</span>
+          <span>Dirga Putra Dachi</span>
           <p>This is a new messages.</p>
         </div>
       </div>

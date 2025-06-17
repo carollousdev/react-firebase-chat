@@ -1,3 +1,3 @@
-# Lama Dev Chat App Starter template
+# Fitur yang ingin ditambahkan kedalam aplikasi ini:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Profile picture dapat di klik.
