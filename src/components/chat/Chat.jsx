@@ -30,7 +30,70 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center">Center</div>
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nemo
+              aperiam facilis nobis. Quisquam illum similique, voluptas neque
+              repellendus ad numquam dignissimos, adipisci corporis in facere
+              ipsum repudiandae dolor distinctio.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>{" "}
+        <div className="message own">
+          <div className="texts">
+            <img
+              src="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-fall-waterfall-free-image.jpeg?w=600&quality=80"
+              alt=""
+            />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nemo
+              aperiam facilis nobis. Quisquam illum similique, voluptas neque
+              repellendus ad numquam dignissimos, adipisci corporis in facere
+              ipsum repudiandae dolor distinctio.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>{" "}
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nemo
+              aperiam facilis nobis. Quisquam illum similique, voluptas neque
+              repellendus ad numquam dignissimos, adipisci corporis in facere
+              ipsum repudiandae dolor distinctio.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>{" "}
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nemo
+              aperiam facilis nobis. Quisquam illum similique, voluptas neque
+              repellendus ad numquam dignissimos, adipisci corporis in facere
+              ipsum repudiandae dolor distinctio.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>{" "}
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut nemo
+              aperiam facilis nobis. Quisquam illum similique, voluptas neque
+              repellendus ad numquam dignissimos, adipisci corporis in facere
+              ipsum repudiandae dolor distinctio.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </div>
       <div className="bottom">
         <div className="icons">
           <img src="./img.png" alt="" />
