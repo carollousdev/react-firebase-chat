@@ -5,6 +5,8 @@
   --border-white: #dddddd35;
   --font-color1: #a5a5a5;
   --button-send: #5183fe;
+  --button-block: rgba(230, 74, 105, 0.553);
+  --button-block2: rgba(230, 74, 105, 0.796);
 
   --soft-blue: #5183fe;
 }
@@ -18,7 +20,7 @@
 }
 
 body {
-  background-image: url("/bg.jpg");
+  background-image: url("/cover.png");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +29,7 @@ body {
 }
 
 .container {
-  width: 90vw;
+  width: 80vw;
   height: 90vh;
   background-color: var(--background--color);
   backdrop-filter: blur(19px) saturate(180%);

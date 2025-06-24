@@ -9,7 +9,7 @@ const Detail = () => {
           alt=""
         />
         <h2>Carollous Dachi</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <p>Lorem ipsum, dolor.</p>
       </div>
       <div className="info">
         <div className="option">
@@ -80,6 +80,16 @@ const Detail = () => {
               </div>
               <img src="./download.png" className="icon" alt="" />
             </div>
+            <div className="photoItem">
+              <div className="photoDetail">
+                <img
+                  src="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-fall-waterfall-free-image.jpeg?w=600&quality=80"
+                  alt=""
+                />
+                <span>photo_2024_2.png</span>
+              </div>
+              <img src="./download.png" className="icon" alt="" />
+            </div>
           </div>
         </div>
         <div className="option">
@@ -89,6 +99,7 @@ const Detail = () => {
           </div>
         </div>
         <button>Block User</button>
+        <button className="logout">Logout</button>
       </div>
     </div>
   );
