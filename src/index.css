@@ -1,7 +1,8 @@
 :root {
   --background--color: rgba(17, 25, 40, 0.9);
   --transparant-color: rgba(17, 25, 40, 0.5);
-  --border-white: #dddddd34;
+  --transparant2-color: rgba(17, 25, 40, 0.3);
+  --border-white: #dddddd35;
   --font-color1: #a5a5a5;
   --button-send: #5183fe;
 
