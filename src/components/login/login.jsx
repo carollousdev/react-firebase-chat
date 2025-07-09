@@ -2,6 +2,10 @@ import { useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../lib/firebase";
+
 const Login = () => {
   const [avatar, setAvatar] = useState({
     file: null,
@@ -15,12 +19,28 @@ const Login = () => {
     });
   };
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const { username, email, password } = Object.fromEntries(formData);
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", res.user.uid), {
+        username,
+        email,
+        password,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
-
-    const { email, password } = e.target;
-
-    toast.warn(email.value + " " + password.value);
+    // const { email, password } = e.target;
+    toast.warn("Silahkan masukkan email dan password");
   };
 
   return (
@@ -36,7 +56,7 @@ const Login = () => {
       <div className="separator"></div>
       <div className="item">
         <h2>Create an Account</h2>
-        <form>
+        <form onSubmit={handleRegister}>
           <label htmlFor="file">
             <img
               src={avatar.url || "./avatar.png"}
