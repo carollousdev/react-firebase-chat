@@ -58,6 +58,11 @@
       color: #ffffff;
       border: none;
       cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: #5182fe75;
+      }
     }
   }
 }
