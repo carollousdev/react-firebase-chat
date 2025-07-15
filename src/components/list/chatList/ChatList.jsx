@@ -1,9 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./chatList.css";
 import AddUser from "./addUser/addUser";
+import { useUserStore } from "../../../lib/userStore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../lib/firebase";
 
 const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
+  const [userChats, setUserChats] = useState([]);
+
+  const { currentUser } = useUserStore();
+
+  useEffect(() => {
+    const unSub = onSnapshot(
+      doc(db, "userchats", currentUser.id),
+      async (res) => {
+        const items = res.data().chats;
+
+        const promises = items.map(async (item) => {
+          const userDocRef = doc(db, "users", item.receiverId);
+          const userDocSnap = await getDoc(userDocRef);
+
+          const user = userDocSnap.data();
+          return { ...item, user };
+        });
+
+        const chatData = await Promise.all(promises);
+        setUserChats(chatData.sort((a, b) => b.updatedAt - a.updatedAt));
+      }
+    );
+    return () => unSub();
+  }, [currentUser.id]);
 
   return (
     <div className="chatList">
@@ -19,97 +46,18 @@ const ChatList = () => {
           onClick={() => setAddMode(!addMode)}
         />
       </div>
-      <div className="item">
-        <img src="./carollous.jpg" alt="" />
-        <div className="texts">
-          <span>Carollous Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Paulus Dachi</span>
-          <p>How are you today ?</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Josua Christian Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
-      <div className="item">
-        <img src="./avatar.png" alt="" />
-        <div className="texts">
-          <span>Dirga Putra Dachi</span>
-          <p>This is a new messages.</p>
-        </div>
-      </div>
+      {userChats.map((chat) => {
+        return (
+          <div className="item" key={chat}>
+            <img src="./carollous.jpg" alt="" />
+            <div className="texts">
+              <span>Carollous Dachi</span>
+              <p>This is a new messages.</p>
+            </div>
+          </div>
+        );
+      })}
+
       {addMode && <AddUser />}
     </div>
   );
