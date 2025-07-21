@@ -44,14 +44,42 @@ const AddUser = () => {
 
   const handleAdd = async () => {
     const chatRef = collection(db, "chats");
+    const newChatRef = doc(chatRef);
     const userChatsRef = collection(db, "userchats");
 
     try {
       const docRef = doc(userChatsRef, currentUser.id);
       const docSnap = await getDoc(docRef);
 
-      if (!docSnap.exists()) {
-        const newChatRef = doc(chatRef);
+      if (docSnap.exists()) {
+        const getDataSnapshot = docSnap.data();
+        const userChatsIndex = getDataSnapshot.chats.findIndex((chat) => {
+          chat.receiverId === user.id;
+        });
+
+        if (userChatsIndex === -1) {
+          await setDoc(newChatRef, {
+            createdAt: serverTimestamp(),
+            messages: [],
+          });
+          await updateDoc(doc(userChatsRef, currentUser.id), {
+            chats: arrayUnion({
+              chatId: newChatRef.id,
+              lastMessage: "",
+              receiverId: user.id,
+              updatedAt: Date.now(),
+            }),
+          });
+          await setDoc(doc(userChatsRef, user.id), {
+            chats: arrayUnion({
+              chatId: newChatRef.id,
+              lastMessage: "",
+              receiverId: currentUser.id,
+              updatedAt: Date.now(),
+            }),
+          });
+        }
+      } else {
         await setDoc(newChatRef, {
           createdAt: serverTimestamp(),
           messages: [],
