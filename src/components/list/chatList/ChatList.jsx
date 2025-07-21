@@ -64,7 +64,10 @@ const ChatList = () => {
             key={chat.chatId}
             onClick={() => handleSelect(chat)}
           >
-            <img src="./carollous.jpg" alt="" />
+            <img
+              src={`https://ui-avatars.com/api/?name=${currentUser.username[0]}&background=111928&color=ACACAB`}
+              alt=""
+            />
             <div className="texts">
               <span>{chat.user.username}</span>
               <p>{chat.lastMessage}</p>

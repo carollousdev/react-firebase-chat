@@ -82,11 +82,11 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat">
+    <div className="chat" key={currentUser.id}>
       <div className="top">
         <div className="user">
           <img
-            src="https://ui-avatars.com/api/?name=P&background=111928&color=ACACAB"
+            src={`https://ui-avatars.com/api/?name=${user.username[0]}&background=111928&color=ACACAB`}
             alt=""
           />
           <div className="texts">

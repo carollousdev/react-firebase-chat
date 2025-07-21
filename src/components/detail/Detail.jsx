@@ -1,19 +1,24 @@
+import { useEffect } from "react";
+import { useChatStore } from "../../lib/chatStore";
 import { auth } from "../../lib/firebase";
 import { useUserStore } from "../../lib/userStore";
 import "./detail.css";
 
 const Detail = () => {
   const { currentUser } = useUserStore();
+  const { user, changeChat, resetStore } = useChatStore();
+
+  const detailUser = user ? user.username : currentUser.username;
 
   return (
     <div className="detail">
       <div className="user">
         <img
-          src={`https://ui-avatars.com/api/?name=${currentUser.username[0]}&background=111928&color=ACACAB`}
+          src={`https://ui-avatars.com/api/?name=${detailUser}&background=111928&color=ACACAB`}
           alt=""
         />
-        <h2>{currentUser.username}</h2>
-        <p>Lorem ipsum, dolor.</p>
+        <h2>{detailUser}</h2>
+        <p>Online</p>
       </div>
       <div className="info">
         <div className="option">
@@ -46,8 +51,14 @@ const Detail = () => {
             </div>
           </div>
         </div> */}
-        <button>Block User</button>
-        <button className="logout" onClick={() => auth.signOut()}>
+        {user && <button>Block User</button>}
+        <button
+          className="logout"
+          onClick={() => {
+            resetStore();
+            auth.signOut();
+          }}
+        >
           Logout
         </button>
       </div>
