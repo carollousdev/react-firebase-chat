@@ -46,61 +46,50 @@ const AddUser = () => {
     const chatRef = collection(db, "chats");
     const newChatRef = doc(chatRef);
     const userChatsRef = collection(db, "userchats");
+    const uIDs = [currentUser.id, user.id];
 
     try {
-      const docRef = doc(userChatsRef, currentUser.id);
-      const docSnap = await getDoc(docRef);
+      uIDs.forEach(async (id, index) => {
+        const receiverId = index === 0 ? user.id : currentUser.id;
 
-      if (docSnap.exists()) {
-        const getDataSnapshot = docSnap.data();
-        const userChatsIndex = getDataSnapshot.chats.findIndex((chat) => {
-          chat.receiverId === user.id;
-        });
+        const docRef = doc(userChatsRef, id);
+        const docSnap = await getDoc(docRef);
 
-        if (userChatsIndex === -1) {
+        if (docSnap.exists()) {
+          const getDataSnapshot = docSnap.data();
+          const userChatsIndex = getDataSnapshot.chats.findIndex((chat) => {
+            chat.receiverId === receiverId;
+          });
+
+          if (userChatsIndex === -1) {
+            await setDoc(newChatRef, {
+              createdAt: serverTimestamp(),
+              messages: [],
+            });
+            await updateDoc(doc(userChatsRef, id), {
+              chats: arrayUnion({
+                chatId: newChatRef.id,
+                lastMessage: "",
+                receiverId,
+                updatedAt: Date.now(),
+              }),
+            });
+          }
+        } else {
           await setDoc(newChatRef, {
             createdAt: serverTimestamp(),
             messages: [],
           });
-          await updateDoc(doc(userChatsRef, currentUser.id), {
+          await setDoc(doc(userChatsRef, id), {
             chats: arrayUnion({
               chatId: newChatRef.id,
               lastMessage: "",
-              receiverId: user.id,
-              updatedAt: Date.now(),
-            }),
-          });
-          await setDoc(doc(userChatsRef, user.id), {
-            chats: arrayUnion({
-              chatId: newChatRef.id,
-              lastMessage: "",
-              receiverId: currentUser.id,
+              receiverId,
               updatedAt: Date.now(),
             }),
           });
         }
-      } else {
-        await setDoc(newChatRef, {
-          createdAt: serverTimestamp(),
-          messages: [],
-        });
-        await setDoc(doc(userChatsRef, currentUser.id), {
-          chats: arrayUnion({
-            chatId: newChatRef.id,
-            lastMessage: "",
-            receiverId: user.id,
-            updatedAt: Date.now(),
-          }),
-        });
-        await setDoc(doc(userChatsRef, user.id), {
-          chats: arrayUnion({
-            chatId: newChatRef.id,
-            lastMessage: "",
-            receiverId: currentUser.id,
-            updatedAt: Date.now(),
-          }),
-        });
-      }
+      });
     } catch (err) {
       console.log(err);
     } finally {
