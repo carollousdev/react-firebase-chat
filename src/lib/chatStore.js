@@ -2,7 +2,6 @@ import { create } from 'zustand'
 import { useUserStore } from './userStore';
 
 const useChatStore = create((set) => ({
-    mobileLegends: 'ADjash234',
     chatId: null,
     user: null,
     isCurrentUserBlocked: false,

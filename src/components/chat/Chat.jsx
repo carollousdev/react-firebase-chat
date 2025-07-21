@@ -90,7 +90,7 @@ const Chat = () => {
             alt=""
           />
           <div className="texts">
-            <span>Paulus Dachi</span>
+            <span>{user.username}</span>
             <p>online</p>
           </div>
         </div>
