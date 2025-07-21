@@ -5,6 +5,12 @@ import { db } from './firebase';
 const useUserStore = create((set) => ({
     currentUser: null,
     isLoading: true,
+    toogleCheck: false,
+    toogleAdd: (status) => {
+        return set({
+            toogleCheck: status
+        })
+    },
     fetchUserInfo: async (user) => {
         if (!user) return set({ currentUser: null, isLoading: false });
 

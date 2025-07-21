@@ -7,8 +7,11 @@ const UserInfo = () => {
   return (
     <div className="userInfo">
       <div className="user">
-        <img src="./avatar.png" alt="" />
-        <h2>{currentUser.username.split(".")[0]}</h2>
+        <img
+          src={`https://ui-avatars.com/api/?name=${currentUser.username[0]}&background=111928&color=ACACAB`}
+          alt=""
+        />
+        <h2>{currentUser.username}</h2>
       </div>
       <div className="icons">
         <img src="./more.png" alt="" />

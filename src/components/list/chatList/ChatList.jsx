@@ -10,8 +10,12 @@ const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
   const [userChats, setUserChats] = useState([]);
 
-  const { currentUser } = useUserStore();
+  const { currentUser, toogleCheck } = useUserStore();
   const { changeChat } = useChatStore();
+
+  useEffect(() => {
+    setAddMode(toogleCheck);
+  }, [toogleCheck]);
 
   useEffect(() => {
     const unSub = onSnapshot(
