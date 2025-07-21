@@ -39,10 +39,6 @@ const Login = () => {
         block: [],
       });
 
-      await setDoc(doc(db, "userchats", res.user.uid), {
-        chats: [],
-      });
-
       toast.success("Account created! You can login now!");
     } catch (error) {
       toast.error("setdocs error: " + error.message);
